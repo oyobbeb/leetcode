@@ -4,12 +4,20 @@
  * @return {boolean}
  */
 var canConstruct = function(ransomNote, magazine) {
-    let dupRansomNote = ransomNote;
-
-    for (const char of magazine) {
-        dupRansomNote = dupRansomNote.replace(char, "");
+    if (ransomNote.length > magazine.length) {
+        return false;
     }
 
-    if (!dupRansomNote) return true;
-    return false;
+    let magazineCopy = magazine;
+
+    for (const character of ransomNote) {
+        if (magazineCopy.indexOf(character) !== -1) {
+            magazineCopy = magazineCopy.replace(character, "");
+            continue;
+        }
+    
+        return false;
+    }
+
+    return true;
 };

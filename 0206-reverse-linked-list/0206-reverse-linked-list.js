@@ -10,15 +10,14 @@
  * @return {ListNode}
  */
 var reverseList = function(head) {
-    let next = null;
-    let prev = null;
-
-    while (head) {
-        next = head.next;
-        head.next = prev;
-        prev = head;
-        head = next;
-    }
-
-    return prev;
+    if (!head || !head.next) return head; 
+    return reverseConnection(head); 
 };
+
+function reverseConnection(head) {
+    if (!head.next) return head;
+    const lastNode = reverseConnection(head.next)
+    head.next.next = head;
+    head.next = null;
+    return lastNode;
+}

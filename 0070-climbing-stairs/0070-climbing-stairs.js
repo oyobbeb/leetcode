@@ -4,18 +4,10 @@
  */
 var climbStairs = function(n) {
     const stair = {};
+    stair[1] = 1;
+    stair[2] = 2;
     
-    for (let i = 1; i <= n; i++) {
-        if (i === 1) {
-            stair[1] = 1;
-            continue;
-        }
-
-        if (i === 2) {
-            stair[2] = 2;
-            continue;
-        }
-
+    for (let i = 3; i <= n; i++) {
         stair[i] = stair[i - 1] + stair[i - 2];
     }
 

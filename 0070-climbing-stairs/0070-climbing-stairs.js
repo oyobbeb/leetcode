@@ -3,14 +3,23 @@
  * @return {number}
  */
 var climbStairs = function(n) {
-    if (n < 3) return n;
+    let divideCount = n / 2;
+    let count = 0;
 
-    let first = 1;
-    let second = 2;
+    while (divideCount <= n) {
+        const copyDivide = divideCount;
+        const combinationD = n - divideCount;
 
-    for (let i = 2; i < n; i++) {
-        [first, second] = [second, first + second];
+        count += factorial(copyDivide) / (factorial(combinationD) * factorial(copyDivide - combinationD));
+
+        divideCount += 1;
     }
 
-    return second;
+    return count;
 };
+
+function factorial(num) {
+    if (num <= 1) return 1;
+
+    return num * factorial(num - 1);
+}

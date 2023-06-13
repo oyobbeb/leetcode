@@ -4,19 +4,15 @@
  */
 var longestPalindrome = function(s) {
     let count = 0;
-    const set = new Set();
+    let hash = {};
     
-    for (let i = 0; i < s.length; i++) {
-        const string = s[i];
+    for (const char of s) {
+        hash[char] ? hash[char]++ : hash[char] = 1;
 
-        if (set.has(string)) {
+        if (hash[char] % 2 === 0) {
             count += 2;
-            set.delete(string);
-            continue;
         }
-
-        set.add(string);
     }
 
-    return count + (set.size > 0 ? 1 : 0);
+    return s.length > count ? count + 1 : count;
 };

@@ -14,12 +14,12 @@ var insert = function(intervals, newInterval) {
         if (last < start) {
             left.push(interval);
             continue;
-        };
+        }
 
         if (first > end) {
             right.push(interval);
             continue;
-        };
+        }
 
         start = start > first ? first : start;
         end = end > last ? end : last;

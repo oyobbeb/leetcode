@@ -3,25 +3,17 @@
  * @return {number[]}
  */
 var getRow = function(rowIndex) {
-    const triangle = [];
-
     if (rowIndex === 0) return [1];
+    
+    const row = [1];
 
-    triangle.push([1]);
+    const previousRow = getRow(rowIndex - 1);
 
-    for (let i = 1; i < rowIndex + 1; i++) {
-      const previousRow = triangle[i - 1];
-      const row = [];
-
-      row.push(1);
-
-      for (let j = 1; j < previousRow.length; j++) {
-        row.push(previousRow[j - 1] + previousRow[j]);
-      }
-
-      row.push(1);
-      triangle.push(row);
+    for (let i = 0; i < previousRow.length - 1; i++) {
+      row.push(previousRow[i] + previousRow[i + 1]);
     }
 
-    return triangle[rowIndex];
+    row.push(1);
+  
+    return row;
 };

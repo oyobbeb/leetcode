@@ -11,6 +11,10 @@
  * @return {Node}
  */
 var cloneGraph = function(node) {
+  // time complexity: O(n);
+  // space complexity: O(n);
+  // DFS + Hash Table
+
   if (!node) return null;
 
   const mappedNodes = new Map();

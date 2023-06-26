@@ -11,8 +11,8 @@
  * @return {number[][]}
  */
 var levelOrder = function(root) {
-  // time complexity: O(n);
-  // space complexity: O(n);
+  // time complexity: O(N);
+  // space complexity: O(N);
   // BFS
 
   if (!root) return [];

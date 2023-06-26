@@ -11,8 +11,8 @@
  * @return {Node}
  */
 var cloneGraph = function(node) {
-  // time complexity: O(n);
-  // space complexity: O(n);
+  // time complexity: O(N);
+  // space complexity: O(N);
   // DFS + Hash Table
 
   if (!node) return null;

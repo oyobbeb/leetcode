@@ -11,22 +11,35 @@
  * @return {number[][]}
  */
 var levelOrder = function(root) {
-    const result = [];
+  // time complexity: O(n);
+  // space complexity: O(n);
+  // BFS
 
-    const traverse = (node, level = 0) => {
-      if (!node) return;
+  if (!root) return [];
 
-      if (!result[level]) {
-        result[level] = [node.val];
-      } else {
-        result[level].push(node.val);
+  const queue = [root];
+  const result = [];
+
+  while (queue.length !== 0) {
+    const currentLevel = [];
+    const levelSize = queue.length;
+
+    for (let i = 0; i < levelSize; i++) {
+      const currentValue = queue.shift();
+      
+      if (currentValue.left) {
+        queue.push(currentValue.left);
       }
 
-      traverse(node.left, level + 1);
-      traverse(node.right, level + 1);
+      if (currentValue.right) {
+        queue.push(currentValue.right);
+      }
+
+      currentLevel.push(currentValue.val);
     }
 
-    traverse(root);
+    result.push(currentLevel);
+  }
 
-    return result;
+  return result;
 };

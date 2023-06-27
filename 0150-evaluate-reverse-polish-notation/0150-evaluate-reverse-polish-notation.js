@@ -3,6 +3,10 @@
  * @return {number}
  */
 var evalRPN = function(tokens) {
+  // time complexity: O(N);
+  // space complexity: O(N);
+  // stack apporach;
+
   const stack = [];
   const operators = {
     "+": (a, b) => a + b,
@@ -20,7 +24,7 @@ var evalRPN = function(tokens) {
       continue;
     }
 
-    stack.push(Number(item));
+    stack.push(parseInt(item, 10));
   }
 
   return stack.pop();

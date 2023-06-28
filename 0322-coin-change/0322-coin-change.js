@@ -4,22 +4,18 @@
  * @return {number}
  */
 var coinChange = function(coins, amount) {
-  const queue = [[0, 0]];
-  const visited = new Set();
+  // coins[i]로 amount + 1까지를 순서대로 실행하며 몇개가 필요한지 파악하기
+  // time complexity: O(N * M); N === amount, M === coins.length
+  // space complexity: O(N);
+  // Can approacth to DP and BFS with Hash
 
-  while (queue.length !== 0) {
-    let [count, total] = queue.shift();
+  const coinMemo = [0].concat(new Array(amount).fill(amount + 1));
 
-    if (total === amount) return count;
-    if (visited.has(total)) continue;
-    visited.add(total);
-
-    for (const coin of coins) {
-      if (total + coin <= amount) {
-        queue.push([count + 1, total + coin]);
-      }
+  for (const coin of coins) {
+    for (let i = coin; i <= amount; i++) {
+      coinMemo[i] = Math.min(coinMemo[i], coinMemo[i - coin] + 1);
     }
   }
 
-  return -1;
+  return coinMemo[amount] < amount + 1 ? coinMemo[amount] : -1;
 };

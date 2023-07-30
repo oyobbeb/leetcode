@@ -11,6 +11,11 @@
  * @return {ListNode}
  */
 var addTwoNumbers = function(l1, l2) {
+  /**
+  * Time Complexity: O(N + M)
+  * Space Complexity: O(N + M)
+  */
+
   let str1 = '';
   let str2 = '';
 
@@ -25,17 +30,14 @@ var addTwoNumbers = function(l1, l2) {
   }
 
   const addNumbers = String(BigInt(str1) + BigInt(str2));
-  const reversedString = [...addNumbers].reverse().join('');
 
-  const dummy = new ListNode(0);
-  let current = dummy;
-  let i = 0;
+  const result = new ListNode(0);
+  let currentNode = result;
 
-  while (i < reversedString.length) {
-    current.next = new ListNode(reversedString[i]);
-    current = current.next;
-    i++;
+  for (let i = addNumbers.length - 1; i >= 0; i--) {
+    currentNode.next = new ListNode(Number(addNumbers[i]));
+    currentNode = currentNode.next;
   }
 
-  return dummy.next;
+  return result.next;
 };

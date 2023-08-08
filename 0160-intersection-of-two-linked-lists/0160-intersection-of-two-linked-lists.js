@@ -12,6 +12,29 @@
  * @return {ListNode}
  */
 var getIntersectionNode = function(headA, headB) {
+  /**
+  const nodeMap = new Map();
+
+  while (headA || headB) {
+    if (headA) {
+      if (nodeMap.has(headA)) return headA;
+
+      nodeMap.set(headA, true);
+      headA = headA.next;
+    }
+
+    if (headB) {
+      if (nodeMap.has(headB)) return headB;
+
+      nodeMap.set(headB, true);
+      headB = headB.next;
+    }
+  }
+
+  * Time Complexity: O(n + m)
+  * Space Complexity: O(1)
+  */
+
   let lengthA = getLength(headA);
   let lengthB = getLength(headB);
 

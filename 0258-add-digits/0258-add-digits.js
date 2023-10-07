@@ -3,6 +3,10 @@
  * @return {number}
  */
 var addDigits = function(num) {
+  /**
+  * Time Complexity: O(n) n is number of digits
+  * Space Complexity: O(n)
+  */
   // if (num.toString().length === 1) return num;
 
   // num = num.toString();

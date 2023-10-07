@@ -11,6 +11,10 @@
  * @return {string[]}
  */
 var binaryTreePaths = function(root) {
+  /**
+  * Time Complexity: O(n)
+  * Space Complexity: O(n)
+  */
   // if (!root) return null;
   
   // const stack = [[root, ""]];
@@ -33,21 +37,24 @@ var binaryTreePaths = function(root) {
 
   const paths = [];
 
-  const preOrder = (node, currentPath = []) => {
+  const preOrder = (node, currentPath = "") => {
     if (!node) return null;
 
-    currentPath.push(node.val);
+    // Create the new path for the current node
+    currentPath = currentPath ? currentPath + "->" + node.val : `${node.val}`;
 
+    // If it's a leaf node, push the path to the result
     if (!node.left && !node.right) {
-      paths.push([...currentPath]);
+      paths.push(currentPath);
+      return;
     }
 
-    preOrder(node.left, [...currentPath]);
-    preOrder(node.right, [...currentPath]);
+    // Recur for left and right children
+    preOrder(node.left, currentPath);
+    preOrder(node.right, currentPath);
   }
 
   preOrder(root);
-
-  const result = paths.map(path => path.join("->"));
-  return result;
+  
+  return paths;
 };

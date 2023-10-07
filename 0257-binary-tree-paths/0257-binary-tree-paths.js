@@ -11,23 +11,43 @@
  * @return {string[]}
  */
 var binaryTreePaths = function(root) {
-  if (!root) return null;
+  // if (!root) return null;
   
-  const stack = [[root, ""]];
+  // const stack = [[root, ""]];
+  // const paths = [];
+
+  // while (stack.length) {
+  //   const [node, path] = stack.pop();
+  //   const newPath = path + node.val;
+
+  //   if (!node.left && !node.right) {
+  //     paths.push(newPath);
+  //     continue;
+  //   }
+
+  //   if (node.left) stack.push([node.left, newPath + "->"]);
+  //   if (node.right) stack.push([node.right, newPath + "->"]);
+  // }
+
+  // return paths;
+
   const paths = [];
 
-  while (stack.length) {
-    const [node, path] = stack.pop();
-    const newPath = path + node.val;
+  const preOrder = (node, currentPath = []) => {
+    if (!node) return null;
+
+    currentPath.push(node.val);
 
     if (!node.left && !node.right) {
-      paths.push(newPath);
-      continue;
+      paths.push([...currentPath]);
     }
 
-    if (node.left) stack.push([node.left, newPath + "->"]);
-    if (node.right) stack.push([node.right, newPath + "->"]);
+    preOrder(node.left, [...currentPath]);
+    preOrder(node.right, [...currentPath]);
   }
 
-  return paths;
+  preOrder(root);
+
+  const result = paths.map(path => path.join("->"));
+  return result;
 };

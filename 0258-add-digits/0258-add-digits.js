@@ -3,15 +3,20 @@
  * @return {number}
  */
 var addDigits = function(num) {
-  if (num.toString().length === 1) return num;
+  // if (num.toString().length === 1) return num;
 
-  num = num.toString();
+  // num = num.toString();
 
-  let result = 0;
+  // let result = 0;
   
-  for (let i = 0; i < num.length; i++) {
-    result += Number(num[i]);
-  }
+  // for (let i = 0; i < num.length; i++) {
+  //   result += Number(num[i]);
+  // }
 
-  return addDigits(result);
+  // return addDigits(result);
+
+  if (num.toString().length < 2) return num;
+
+  num = [...num.toString()].reduce((acc, current) => acc + Number(current), 0);
+  return addDigits(num);
 };

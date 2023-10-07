@@ -40,16 +40,13 @@ var binaryTreePaths = function(root) {
   const preOrder = (node, currentPath = "") => {
     if (!node) return null;
 
-    // Create the new path for the current node
     currentPath = currentPath ? currentPath + "->" + node.val : `${node.val}`;
 
-    // If it's a leaf node, push the path to the result
     if (!node.left && !node.right) {
       paths.push(currentPath);
       return;
     }
 
-    // Recur for left and right children
     preOrder(node.left, currentPath);
     preOrder(node.right, currentPath);
   }

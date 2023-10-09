@@ -28,13 +28,7 @@ var searchRange = function(nums, target) {
   * Time Complexity: O(log n)
   * Space Complexity: O(1)
   */
-  const firstIndex = findIndex(nums, target, true);
-  const lastIndex = findIndex(nums, target);
-
-  return [firstIndex, lastIndex];
-};
-
-  function findIndex(nums, target, isFirst = false) {
+  const findIndex = (nums, target, isFirst = false) => {
     let left = 0;
     let right = nums.length - 1;
     let index = -1;
@@ -58,3 +52,9 @@ var searchRange = function(nums, target) {
 
     return index;
   }
+
+  const firstIndex = findIndex(nums, target, true);
+  const lastIndex = findIndex(nums, target);
+
+  return [firstIndex, lastIndex];
+};

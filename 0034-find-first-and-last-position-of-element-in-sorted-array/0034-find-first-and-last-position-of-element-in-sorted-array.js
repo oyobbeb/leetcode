@@ -28,59 +28,33 @@ var searchRange = function(nums, target) {
   * Time Complexity: O(log n)
   * Space Complexity: O(1)
   */
-  const findFirst = (nums, target) => {
-    let left = 0;
-    let right = nums.length - 1;
-    let first = -1;
-
-    while (left <= right) {
-      let mid = left + Math.floor((right - left) / 2);
-
-      if (nums[mid] === target) {
-        first = mid;
-        right = mid - 1;
-        continue;
-      }
-
-      if (nums[mid] < target) {
-        left = mid + 1;
-        continue;
-      }
-
-      right = mid - 1;
-    }
-
-    return first;
-  }
-
-
-  const findLast = (nums, target) => {
-    let left = 0;
-    let right = nums.length - 1;
-    let last = -1;
-
-    while (left <= right) {
-      let mid = left + Math.floor((right - left) / 2);
-
-      if (nums[mid] === target) {
-        last = mid;
-        left = mid + 1;
-        continue;
-      }
-
-      if (nums[mid] < target) {
-        left = mid + 1;
-        continue;
-      }
-
-      right = mid - 1;
-    }
-
-    return last;
-  }
-
-  const firstIndex = findFirst(nums, target);
-  const lastIndex = findLast(nums, target);
+  const firstIndex = findIndex(nums, target, true);
+  const lastIndex = findIndex(nums, target);
 
   return [firstIndex, lastIndex];
 };
+
+  function findIndex(nums, target, isFirst = false) {
+    let left = 0;
+    let right = nums.length - 1;
+    let index = -1;
+
+    while (left <= right) {
+      let mid = left + Math.floor((right - left) / 2);
+
+      if (nums[mid] === target) {
+        index = mid;
+        isFirst ? right = mid - 1 : left = mid + 1;
+        continue;
+      }
+
+      if (nums[mid] < target) {
+        left = mid + 1;
+        continue;
+      }
+
+      right = mid - 1;
+    }
+
+    return index;
+  }

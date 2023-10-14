@@ -14,13 +14,13 @@
 var hasPathSum = function(root, targetSum) {
   if (root === null) return false;
 
-  // targetSum -= root.val;
+  targetSum -= root.val;
 
-  // if (root.left === null && root.right === null) {
-  //   return targetSum === 0;
-  // }
+  if (root.left === null && root.right === null) {
+    return targetSum === 0;
+  }
 
-  // return hasPathSum(root.left, targetSum) || hasPathSum(root.right, targetSum);
+  return hasPathSum(root.left, targetSum) || hasPathSum(root.right, targetSum);
 
   // const stack = [];
   // let current;
@@ -47,23 +47,23 @@ var hasPathSum = function(root, targetSum) {
 
   // return false;
 
-  const stack = [[root, targetSum - root.val]];
+  // const stack = [[root, targetSum - root.val]];
   
-  while (stack.length) {
-      const [current, sum] = stack.pop();
+  // while (stack.length) {
+  //     const [current, sum] = stack.pop();
       
-      if (!current.left && !current.right && sum === 0) return true;
+  //     if (!current.left && !current.right && sum === 0) return true;
       
-      if (current.right) {
-          stack.push([current.right, sum - current.right.val]);
-      }
+  //     if (current.right) {
+  //         stack.push([current.right, sum - current.right.val]);
+  //     }
       
-      if (current.left) {
-          stack.push([current.left, sum - current.left.val]);
-      }
-  }
+  //     if (current.left) {
+  //         stack.push([current.left, sum - current.left.val]);
+  //     }
+  // }
   
-  return false;
+  // return false;
 
   // let output = false;
   // const traverse = (root, sum = 0) => {
